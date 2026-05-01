@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: #0f172a;
+    color: white;
+}
+
+.app {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #020617;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    color: #38bdf8;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 15px 0;
+    cursor: pointer;
+    color: #94a3b8;
+}
+
+.sidebar li:hover {
+    color: white;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 250px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #22c55e;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    flex: 1;
+    text-align: center;
+}
+
+.card.error {
+    background: #7f1d1d;
+}
+
+.card.info {
+    background: #1e3a8a;
+}
+
+/* Logs */
+.logs {
+    background: #020617;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.log {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.ERROR {
+    background: #ef4444;
+}
+
+.INFO {
+    background: #3b82f6;
+}
+
+.WARNING {
+    background: #f59e0b;
+}
+.sidebar li.active {
+    color: white;
+    font-weight: bold;
+}

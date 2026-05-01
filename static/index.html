@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Monitor SaaS</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>⚡ Log System</h2>
+        <ul>
+            <li onclick="showSection('dashboard')">Dashboard</li>
+            <li onclick="showSection('logs')">Logs</li>
+            <li onclick="showSection('alerts')">Alerts</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <!-- DASHBOARD SECTION -->
+        <div id="dashboardSection">
+
+            <div class="topbar">
+                <input type="text" id="search" placeholder="Search logs...">
+                <button onclick="searchLogs()">Search</button>
+            </div>
+
+            <div class="stats">
+                <div class="card">
+                    <h3>Total Logs</h3>
+                    <p id="totalLogs">0</p>
+                </div>
+
+                <div class="card error">
+                    <h3>Errors</h3>
+                    <p id="errorLogs">0</p>
+                </div>
+
+                <div class="card info">
+                    <h3>Info</h3>
+                    <p id="infoLogs">0</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LOGS SECTION -->
+        <div id="logsSection">
+
+            <div class="controls">
+                <button onclick="loadLogs()">Refresh</button>
+                <button onclick="filterLogs('ERROR')">Errors</button>
+                <button onclick="filterLogs('INFO')">Info</button>
+            </div>
+
+            <div id="logs" class="logs"></div>
+
+        </div>
+
+        <!-- ALERTS SECTION -->
+        <div id="alertsSection" style="display:none;">
+            <h2>🚨 Alerts Panel</h2>
+            <div class="logs">
+                <p>No alerts yet...</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
