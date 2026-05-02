@@ -6,11 +6,7 @@ from sqlalchemy.orm import Session
 
 import models, schemas
 from database import SessionLocal, engine
-
-# ✅ FIRST create app
 app = FastAPI()
-
-# ✅ THEN middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -18,11 +14,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# ✅ THEN static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# ✅ THEN routes
 @app.get("/")
 def serve_home():
     return FileResponse("static/index.html")
@@ -30,7 +23,6 @@ def serve_home():
 # Create DB tables
 models.Base.metadata.create_all(bind=engine)
 
-# DB connection
 def get_db():
     db = SessionLocal()
     try:
@@ -38,7 +30,7 @@ def get_db():
     finally:
         db.close()
 
-# Create log
+
 @app.post("/logs")
 def create_log(log: schemas.LogCreate, db: Session = Depends(get_db)):
     db_log = models.Log(level=log.level, message=log.message)
@@ -47,20 +39,18 @@ def create_log(log: schemas.LogCreate, db: Session = Depends(get_db)):
     db.refresh(db_log)
     return db_log
 
-# Get logs
+
 @app.get("/logs")
 def get_logs(db: Session = Depends(get_db)):
     return db.query(models.Log).all()
 
-# Filter logs
+
 @app.get("/logs/filter")
 def filter_logs(level: str = Query(None), db: Session = Depends(get_db)):
     query = db.query(models.Log)
     if level:
         query = query.filter(models.Log.level == level)
     return query.all()
-
-# Search logs
 @app.get("/logs/search")
 def search_logs(keyword: str, db: Session = Depends(get_db)):
     return db.query(models.Log).filter(
