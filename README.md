@@ -1,20 +1,80 @@
-# 🚀 Log Monitoring SaaS Dashboard
+ 📋 Log Monitoring SaaS Dashboard
 
-A full-stack log monitoring system built using FastAPI and JavaScript.
+> A full-stack real-time log monitoring system with a modern SaaS-style dashboard — ingest, filter, search, and analyze application logs through a clean web UI
 
-## 🔥 Features
-- Real-time log streaming
-- Search & filtering
-- Dashboard with stats
-- Alerts panel
-- Modern SaaS UI
+When applications break in production, engineers waste hours grepping through raw log files with no structure, no filtering, and no visibility. This system turns chaotic log streams into a queryable, visual dashboard.
 
-## 🛠 Tech Stack
-- FastAPI (Backend)
-- SQLite (Database)
-- HTML, CSS, JavaScript (Frontend)
+Real-time log streaming** — new logs appear instantly without page refresh
+*Advanced filtering** — filter by severity (ERROR, WARN, INFO), timestamp range, and keywords
+Dashboard with live stats** — log counts, error rates, severity breakdown
+Alerts panel** — surface critical errors automatically
+Built-in log generator** — simulate log traffic for testing
+Dockerized** — consistent deployment across any environment
 
-## ▶️ How to Run
 
+| Layer | Technology |
+|---|---|
+| Backend API | FastAPI + Uvicorn |
+| Database | SQLite + SQLAlchemy ORM |
+| Frontend | Vanilla HTML, CSS, JavaScript |
+| Containerization | Docker |
+| API Style | RESTful |
+ 📁 Project Structure
+
+```
+log-monitor/
+├── main.py           # FastAPI app + API routes
+├── models.py         # SQLAlchemy database models
+├── schemas.py        # Pydantic request/response schemas
+├── database.py       # DB connection & session management
+├── log_generator.py  # Simulates log traffic for testing
+├── static/           # Frontend HTML, CSS, JS
+└── .gitignore
+```
+
+---
+
+## 🚀 Run Locally
+
+**Without Docker:**
 ```bash
+git clone https://github.com/Sumithkokkula/log-monitor.git
+cd log-monitor
+pip install -r requirements.txt
 uvicorn main:app --reload
+```
+
+**With Docker:**
+```bash
+docker build -t log-monitor .
+docker run -p 8000:8000 log-monitor
+```
+
+Open `http://localhost:8000` in your browser.
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/logs` | Ingest a new log entry |
+| `GET` | `/logs` | Retrieve logs with optional filters |
+| `GET` | `/logs?severity=ERROR` | Filter by severity level |
+| `GET` | `/logs?keyword=timeout` | Search logs by keyword |
+| `GET` | `/logs?start=...&end=...` | Filter by timestamp range |
+| `GET` | `/stats` | Get dashboard statistics |
+
+--- Future Improvements
+
+- [ ] Add WebSocket support for true real-time streaming
+- [ ] Export logs to CSV / JSON
+- [ ] Role-based access control (RBAC)
+- [ ] Migrate from SQLite to PostgreSQL for production scale
+- [ ] Email/Slack alerts for critical errors
+
+---
+
+## 👤 Author
+
+**Sumith Kokkula** · [LinkedIn](https://www.linkedin.com/in/sumith-kokkula-6a240b329) · [GitHub](https://github.com/Sumithkokkula)
