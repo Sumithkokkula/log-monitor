@@ -1,11 +1,8 @@
 import requests
 import time
 import random
-
 URL = "http://127.0.0.1:8000/logs"
-
 levels = ["INFO", "WARNING", "ERROR"]
-
 messages = [
     "User logged in",
     "Database connection lost",
@@ -14,7 +11,6 @@ messages = [
     "Payment failed",
     "Server restarted"
 ]
-
 while True:
     log = {
         "level": random.choice(levels),
