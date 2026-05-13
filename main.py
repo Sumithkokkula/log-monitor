@@ -20,7 +20,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 def serve_home():
     return FileResponse("static/index.html")
 
-# Create DB tables
+
 models.Base.metadata.create_all(bind=engine)
 
 def get_db():
